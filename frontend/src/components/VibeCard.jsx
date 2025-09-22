@@ -93,7 +93,7 @@ const VibeCard = ({ vibe }) => {
                             setIsPlaying(true)
                         })
                         .catch((error) => {
-                            console.log('Autoplay failed:', error)
+                            // console.log('Autoplay failed:', error)
                         })
                 } else {
                     video.pause()
@@ -130,7 +130,7 @@ const VibeCard = ({ vibe }) => {
             const updatedVibes = vibeData.map(p => p._id === vibe._id ? updatedVibe : p)
             dispatch(setVibeData(updatedVibes))
         } catch (error) {
-            console.log(error)
+            // console.log(error)
         }
     }
 
@@ -142,7 +142,7 @@ const VibeCard = ({ vibe }) => {
             dispatch(setVibeData(updatedVibes))
             setMessage("")
         } catch (error) {
-            console.log(error)
+            // console.log(error)
         }
     }
 
@@ -170,7 +170,7 @@ const VibeCard = ({ vibe }) => {
 
             setShowDeleteModal(false)
         } catch (error) {
-            console.error('Error deleting vibe:', error)
+            // console.error('Error deleting vibe:', error)
             // Handle error - maybe show toast notification
         } finally {
             setIsDeleting(false)
