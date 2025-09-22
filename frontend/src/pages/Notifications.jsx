@@ -21,7 +21,7 @@ const Notifications = () => {
             const result = await axios.post(`${servalUrl}/api/user/markAsReed`, {notificationId : ids}, {withCredentials:true})
             await fetchNotifications()
         } catch (error) {
-            console.log(error)
+            // console.log(error)
         }
     }
 
@@ -31,7 +31,7 @@ const Notifications = () => {
                 // console.log(result.data)
                 dispatch(setNotificationsData(result.data))
             } catch (error) {
-                console.log(error)
+                // console.log(error)
             }
         }
 
