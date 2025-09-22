@@ -19,7 +19,7 @@ dotenv.config();
 const port = process.env.PORT || 8000
 app.use(cors({
     origin : [
-    'https://aura-ecru-tau.vercel.app'
+    'https://aura-3m5s.onrender.com'
   ],
     credentials:true
 }))
