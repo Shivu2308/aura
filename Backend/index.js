@@ -19,7 +19,7 @@ dotenv.config();
 const port = process.env.PORT || 8000
 app.use(cors({
     origin : [
-    'http://localhost:5173'
+    'https://aura-ecru-tau.vercel.app'
   ],
     credentials:true
 }))
