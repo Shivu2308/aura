@@ -8,7 +8,7 @@ const server = http.createServer(app)
 
 const io = new Server(server,{
     cors : {
-        origin : 'https://aura-ecru-tau.vercel.app',
+        origin : 'https://aura-3m5s.onrender.com',
         methods:['GET', 'POST', 'DELETE']
     }
 })
