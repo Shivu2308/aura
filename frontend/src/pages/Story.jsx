@@ -19,7 +19,7 @@ const Story = () => {
             // console.log(result.data[0])
             dispatch(setStoryData(result.data[0]))
         } catch (error) {
-            console.log(error)
+            // console.log(error)
         }
     }
     useEffect(() => {
