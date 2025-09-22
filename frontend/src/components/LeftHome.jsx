@@ -19,11 +19,11 @@ const LeftHome = () => {
       const result = await axios.get(`${servalUrl}/api/auth/signout`, { withCredentials: true })
       dispatch(setUserData(null))
     } catch (error) {
-      console.log(error)
+      // console.log(error)
     }
   }
 
-  console.log(suggestedUsers)
+  // console.log(suggestedUsers)
 
    const unFollowUsers = suggestedUsers?.filter(user =>
         !following.includes(user._id)
