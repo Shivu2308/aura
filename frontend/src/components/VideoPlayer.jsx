@@ -18,7 +18,7 @@ const VideoPlayer = ({ media }) => {
                                 setIsPlaying(true)
                             })
                             .catch((error) => {
-                                console.log('Autoplay failed:', error)
+                                // console.log('Autoplay failed:', error)
                             })
                     } else {
                         video.pause()
