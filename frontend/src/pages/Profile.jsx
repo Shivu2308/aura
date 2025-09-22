@@ -27,7 +27,7 @@ const Profile = () => {
             // console.log(result.data)
             dispatch(setProfileData(result.data))
         } catch (error) {
-            console.log(error)
+            // console.log(error)
         }
     }
 
@@ -36,7 +36,7 @@ const Profile = () => {
             const result = await axios.get(`${servalUrl}/api/auth/signout`, { withCredentials: true })
             dispatch(setUserData(null))
         } catch (error) {
-            console.log(error)
+            // console.log(error)
         }
     }
 
