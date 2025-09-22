@@ -65,7 +65,7 @@ const StoryCard = ({ storyData }) => {
             // console.log('Post deleted successfully!')
 
         } catch (error) {
-            console.error('Error deleting story:', error)
+            // console.error('Error deleting story:', error)
             // alert(error.response?.data?.message || 'Failed to delete post. Please try again.')
         } finally {
             setIsDeleting(false)
