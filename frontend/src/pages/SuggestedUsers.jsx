@@ -7,14 +7,14 @@ import { useNavigate } from 'react-router-dom'
 const SuggestedUsers = () => {
 
     const { suggestedUsers, following } = useSelector(state => state.user)
-    console.log("suggestedUsers:", suggestedUsers)
-    console.log("following:", following)
+    // console.log("suggestedUsers:", suggestedUsers)
+    // console.log("following:", following)
 
     const unFollowUsers = suggestedUsers?.filter(user =>
         !following.includes(user._id)
     )
 
-    console.log("unFollowUsers:", unFollowUsers)
+    // console.log("unFollowUsers:", unFollowUsers)
 
     const navigate = useNavigate()
 
