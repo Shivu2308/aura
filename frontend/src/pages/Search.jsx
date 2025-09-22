@@ -92,11 +92,11 @@ const Search = () => {
           }
         )
         
-        console.log(result.data)
+        // console.log(result.data)
         dispatch(setSearchData(result.data || []))
       } catch (error) {
         if (!axios.isCancel(error)) {
-          console.log('Search error:', error)
+          // console.log('Search error:', error)
           dispatch(setSearchData([]))
         }
       } finally {
