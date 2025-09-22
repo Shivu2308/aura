@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear,
+input[type="password"]::-webkit-credentials-auto-fill-button,
+input[type="password"]::-webkit-clear-button,
+input[type="password"]::-webkit-inner-spin-button {
+  display: none !important;
+  appearance: none !important;
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+  -webkit-text-fill-color: inherit !important;
+  transition: background-color 9999s ease-in-out 0s;
+}
+
+
+/* Hide scrollbar but allow scrolling */
+* {
+  -ms-overflow-style: none;  /* IE & Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+
+*::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari, Opera */
+}
+
+* {
+  user-select: none;      /* text select nahi hoga */
+  -webkit-user-select: none; /* Safari/Chrome ke liye */
+  -moz-user-select: none;    /* Firefox ke liye */
+  -ms-user-select: none;     /* IE/Edge ke liye */
+}
+
+
+.heart-animation {
+  animation: heartPop 1.5s ease-out forwards;
+}
+
+@keyframes heartPop {
+  0% {
+    transform: scale(0.5);
+  }
+  50% {
+    transform : scale(1.3);
+    opacity: 1;
+  }
+  100% {
+    transform : scale(1);
+    opacity: 0;
+  }
+}
+
+.slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #3b82f6;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #3b82f6;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+}
