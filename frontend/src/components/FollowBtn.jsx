@@ -13,7 +13,7 @@ const FollowBtn = ({targetUserId, tailwind}) => {
             const result = await axios.get(`${servalUrl}/api/user/follow/${targetUserId}`,{withCredentials:true})
             dispatch(toggleFollowing(targetUserId))
         } catch (error) {
-            console.log(error)
+            // console.log(error)
         }
     }
   return (
