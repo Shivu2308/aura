@@ -116,7 +116,7 @@ const SignIn = () => {
       }, 500);
 
     } catch (error) {
-      console.error('Sign in error:', error);
+      // console.error('Sign in error:', error);
       
       // Handle different types of errors
       if (error.code === 'ECONNABORTED') {
