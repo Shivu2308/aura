@@ -161,7 +161,7 @@ const SignUp = () => {
       setInputFocus(prev => ({ ...prev, otp: true }));
       
     } catch (error) {
-      console.error('Send OTP error:', error);
+      // console.error('Send OTP error:', error);
       
       if (error.code === 'ECONNABORTED') {
         setError('Connection timeout. Please try again.');
@@ -202,7 +202,7 @@ const SignUp = () => {
       setInputFocus(prev => ({ ...prev, name: true }));
       
     } catch (error) {
-      console.error('Verify OTP error:', error);
+      // console.error('Verify OTP error:', error);
       
       if (error.response?.status === 400) {
         setError('Invalid or expired OTP. Please try again.');
@@ -257,7 +257,7 @@ const SignUp = () => {
       }, 500);
       
     } catch (error) {
-      console.error('Sign up error:', error);
+      // console.error('Sign up error:', error);
       
       if (error.response?.status === 409) {
         setError('Username or email already exists');
