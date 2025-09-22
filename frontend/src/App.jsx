@@ -29,7 +29,7 @@ import SuggestedUsers from './pages/SuggestedUsers'
 import Following from './pages/Following'
 import Followers from './pages/Followers'
 
-export const servalUrl = 'https://aura-backend-ruddy.vercel.app'
+export const servalUrl = 'https://aura-backend-47yj.onrender.com'
 
 const App = () => {
   getCurrentUser()
