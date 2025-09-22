@@ -65,7 +65,7 @@ const EditProfile = () => {
             // Cleanup
             URL.revokeObjectURL(imageToCrop)
         } catch (error) {
-            console.error('Crop error:', error)
+            // console.error('Crop error:', error)
             setCropLoading(false)
         }
     }
@@ -97,7 +97,7 @@ const EditProfile = () => {
             navigate(`/profile/${userData.userName}`)
         } catch (error) {
             setLoading(false)
-            console.log(error)
+            // console.log(error)
         }
     }
 
