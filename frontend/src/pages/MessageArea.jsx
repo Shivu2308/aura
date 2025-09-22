@@ -59,17 +59,17 @@ const MessageArea = () => {
         setFrontendImage(null)
         } catch (error) {
             setLoading(false)
-            console.log(error)
+            // console.log(error)
         }
     }
 
     const getAllMessages = async () => {
         try {
             const result = await axios.get(`${servalUrl}/api/message/getAllMessages/${selectedUser._id}`, {withCredentials:true})
-            console.log(result.data)
+            // console.log(result.data)
             dispatch(setMessages(result.data))
         } catch (error) {
-            console.log(error)
+            // console.log(error)
         }
     }
 
