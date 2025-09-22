@@ -120,7 +120,7 @@ const Post = ({ post }) => {
         navigator.vibrate(50)
       }
     } catch (error) {
-      console.log('Error liking post:', error)
+      // console.log('Error liking post:', error)
     } finally {
       setIsLiking(false)
     }
@@ -142,7 +142,7 @@ const Post = ({ post }) => {
       // Auto scroll to new comment
       setTimeout(scrollToBottom, 100)
     } catch (error) {
-      console.log('Error posting comment:', error)
+      // console.log('Error posting comment:', error)
       setMessage(tempMessage) // Restore message on error
     } finally {
       setIsCommenting(false)
@@ -157,7 +157,7 @@ const Post = ({ post }) => {
       const result = await axios.get(`${servalUrl}/api/post/saved/${post._id}`, { withCredentials: true })
       dispatch(setUserData(result.data))
     } catch (error) {
-      console.log('Error saving post:', error)
+      // console.log('Error saving post:', error)
     } finally {
       setIsSaving(false)
     }
@@ -187,7 +187,7 @@ const Post = ({ post }) => {
       // console.log('Post deleted successfully!')
       
     } catch (error) {
-      console.error('Error deleting post:', error)
+      // console.error('Error deleting post:', error)
       // alert(error.response?.data?.message || 'Failed to delete post. Please try again.')
     } finally {
       setIsDeleting(false)
@@ -233,7 +233,7 @@ const Post = ({ post }) => {
       
       // Show notification if it's not current user's post
       if (data.authorId !== userData._id) {
-        console.log('A post was removed from your feed')
+        // console.log('A post was removed from your feed')
       }
     })
 
