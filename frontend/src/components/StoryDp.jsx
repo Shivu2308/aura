@@ -29,7 +29,7 @@ const StoryDp = ({ profileImage, userName, story }) => {
         try {
             const result = await axios.get(`${servalUrl}/api/story/view/${story._id}`, {withCredentials:true})
         } catch (error) {
-            console.log(error)
+            // console.log(error)
         }
     }
 
