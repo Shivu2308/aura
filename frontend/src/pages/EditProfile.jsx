@@ -152,11 +152,17 @@ const EditProfile = () => {
                 placeholder='Profession' 
             />
             
-            <input onChange={(e) => setGender(e.target.value)}
-                type="text" value={gender} 
-                className='w-[90%] max-w-[600px] h-[60px] bg-[#0a1010] border-2 border-gray-700 rounded-2xl text-white font-semibold px-5 outline-none focus:border-blue-500 transition-colors' 
-                placeholder='Gender' 
-            />
+           <select
+                value={gender}
+                onChange={(e) => setGender(e.target.value)}
+                className='w-[90%] max-w-[600px] h-[60px] bg-[#0a1010] border-2 border-gray-700 rounded-2xl text-white font-semibold px-5 outline-none focus:border-blue-500 transition-colors'
+            >
+                <option value="" disabled>
+                    Select Gender
+                </option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
             
             <button onClick={handleEditProfile}
                 className='px-[10px] w-[60%] max-w-[400px] py-[5px] h-[50px] bg-white cursor-pointer rounded-2xl hover:bg-gray-100 transition-colors font-semibold'>
