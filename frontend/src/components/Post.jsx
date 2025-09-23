@@ -25,6 +25,10 @@ const Post = ({ post }) => {
   const [isSaving, setIsSaving] = useState(false)
   const [isDeleting, setIsDeleting] = useState(false)
   const [showDeleteModal, setShowDeleteModal] = useState(false)
+    // Double click like states
+  const [showHeartAnimation, setShowHeartAnimation] = useState(false)
+  const [lastTap, setLastTap] = useState(0)
+
   const commentModalRef = useRef()
   const commentsEndRef = useRef()
   const inputRef = useRef()
@@ -120,11 +124,45 @@ const Post = ({ post }) => {
         navigator.vibrate(50)
       }
     } catch (error) {
-      // console.log('Error liking post:', error)
+      console.log('Error liking post:', error)
     } finally {
       setIsLiking(false)
     }
   }
+
+    // Double click like handler for desktop
+  const handleDoubleClick = async (e) => {
+    // e.preventDefault()
+    if (!isLiked) {
+      await handleLike()
+      console.log("double click")
+    }
+    setShowHeartAnimation(true)
+  }
+
+    const handleTouchStart = async (e) => {
+    const currentTime = new Date().getTime()
+    const tapLength = currentTime - lastTap
+    
+    if (tapLength < 500 && tapLength > 0) {
+      // Double tap detected
+      // e.preventDefault()
+      if (!isLiked) {
+       await handleLike()
+      }
+      setShowHeartAnimation(true)
+    }
+    setLastTap(currentTime)
+  }
+
+    useEffect(() => {
+    if (showHeartAnimation) {
+      const timer = setTimeout(() => {
+        setShowHeartAnimation(false)
+      }, 1500)
+      return () => clearTimeout(timer)
+    }
+  }, [showHeartAnimation])
 
   const handleComment = async () => {
     if (!message.trim() || isCommenting) return
@@ -142,7 +180,7 @@ const Post = ({ post }) => {
       // Auto scroll to new comment
       setTimeout(scrollToBottom, 100)
     } catch (error) {
-      // console.log('Error posting comment:', error)
+      console.log('Error posting comment:', error)
       setMessage(tempMessage) // Restore message on error
     } finally {
       setIsCommenting(false)
@@ -157,7 +195,7 @@ const Post = ({ post }) => {
       const result = await axios.get(`${servalUrl}/api/post/saved/${post._id}`, { withCredentials: true })
       dispatch(setUserData(result.data))
     } catch (error) {
-      // console.log('Error saving post:', error)
+      console.log('Error saving post:', error)
     } finally {
       setIsSaving(false)
     }
@@ -187,7 +225,7 @@ const Post = ({ post }) => {
       // console.log('Post deleted successfully!')
       
     } catch (error) {
-      // console.error('Error deleting post:', error)
+      console.error('Error deleting post:', error)
       // alert(error.response?.data?.message || 'Failed to delete post. Please try again.')
     } finally {
       setIsDeleting(false)
@@ -233,7 +271,7 @@ const Post = ({ post }) => {
       
       // Show notification if it's not current user's post
       if (data.authorId !== userData._id) {
-        // console.log('A post was removed from your feed')
+        console.log('A post was removed from your feed')
       }
     })
 
@@ -290,7 +328,9 @@ const Post = ({ post }) => {
         </div>
 
         {/* Post Media */}
-        <div className='w-[90%] max-w-[500px] flex items-center justify-center'>
+        <div onDoubleClick={handleDoubleClick}
+        onTouchStart={handleTouchStart}
+         className='w-[90%] max-w-[500px] flex items-center relative justify-center'>
           {post?.mediaType === "image" && (
             <div className='w-full flex items-center justify-center rounded-2xl overflow-hidden'>
               <img
@@ -307,6 +347,19 @@ const Post = ({ post }) => {
               <VideoPlayer media={post?.media} />
             </div>
           )}
+
+
+          {showHeartAnimation && (
+            <div className='absolute inset-0 flex items-center justify-center pointer-events-none z-[100]'>
+              <div className='animate-pulse'>
+                <GoHeartFill className='w-20 h-20 text-red-500 drop-shadow-lg animate-bounce' />
+              </div>
+              {/* <div className='absolute animate-pulse'>
+                <GoHeartFill className='w-16 h-16 text-white drop-shadow-lg' />
+              </div> */}
+            </div>
+          )}
+
         </div>
 
         {/* Post Actions */}
