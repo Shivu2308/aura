@@ -27,7 +27,7 @@ const Profile = () => {
             // console.log(result.data)
             dispatch(setProfileData(result.data))
         } catch (error) {
-            // console.log(error)
+            console.log(error)
         }
     }
 
@@ -36,7 +36,7 @@ const Profile = () => {
             const result = await axios.get(`${servalUrl}/api/auth/signout`, { withCredentials: true })
             dispatch(setUserData(null))
         } catch (error) {
-            // console.log(error)
+            console.log(error)
         }
     }
 
@@ -190,56 +190,33 @@ const Profile = () => {
                         </div>
                     }
                     <Nav />
-                    {
-                        postType == "post" &&
-                        postData?.map((post, i) => (
-                            post?.author?._id == profileData?._id ? (profileData?.post?.length > 0 ? (<Post key={i} post={post} />) :
-                                <div className="text-center py-16 px-4">
-                                    <div className="mb-6">
-                                        <div className="w-20 h-20 mx-auto mb-4 rounded-full border-2 border-gray-300 flex items-center justify-center">
-                                            <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}
-                                                    d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
-                                            </svg>
-                                        </div>
-                                    </div>
+                    {postType == "post" && (
+                        (() => {
+                            const userPosts = postData?.filter(post => post?.author?._id === profileData?._id) || [];
 
-                                    <h3 className="text-2xl font-light text-gray-800 mb-2">
-                                        Share Photos
-                                    </h3>
-
-                                    <p className="text-gray-500 text-sm mb-6 max-w-xs mx-auto">
-                                        When you share photos, they will appear on your profile.
-                                    </p>
-
-                                    <button onClick={() => navigate('/upload')} className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg font-medium text-sm transition-colors">
-                                        Share your first post
-                                    </button>
-                                </div>) :
-                                (
+                            return userPosts.length > 0 ? (
+                                userPosts.map((post, i) => (
+                                    <Post key={i} post={post} />
+                                ))
+                            ) : (
+                                // Empty state for own profile vs other user's profile
+                                profileData?._id === userData?._id ? (
                                     <div className="text-center py-16 px-4">
-                                        <div className="mb-6">
-                                            <div className="w-20 h-20 mx-auto mb-4 rounded-full border-2 border-gray-300 flex items-center justify-center">
-                                                <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}
-                                                        d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
-                                                </svg>
-                                            </div>
-                                        </div>
-
-                                        <h3 className="text-xl font-light text-gray-800 mb-2">
-                                            No Posts Yet
-                                        </h3>
-
-                                        <p className="text-gray-500 text-sm max-w-xs mx-auto">
-                                            {profileData?.userName} hasn't shared any photos or videos yet.
-                                        </p>
+                                        <h3 className="text-2xl font-light text-gray-800 mb-2">Share Photos</h3>
+                                        <p className="text-gray-500 text-sm mb-6">When you share photos, they will appear here.</p>
+                                        <button onClick={() => navigate('/upload')} className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg">
+                                            Share your first post
+                                        </button>
+                                    </div>
+                                ) : (
+                                    <div className="text-center py-16 px-4">
+                                        <h3 className="text-xl font-light text-gray-800 mb-2">No Posts Yet</h3>
+                                        <p className="text-gray-500 text-sm">{profileData?.userName} hasn't shared any photos yet.</p>
                                     </div>
                                 )
-                        ))
-                    }
+                            );
+                        })()
+                    )}
                     {
                         postType == "saved" &&
                         postData.map((post, i) => (
