@@ -99,7 +99,7 @@ const MessageArea = () => {
                     <div onClick={() => navigate(`/profile/${selectedUser.userName}`)} className='w-[40px] md:w-[50px] h-[40px] md:h-[50px] rounded-full shrink-0 cursor-pointer overflow-hidden'>
                         <img className='w-full h-full object-cover' src={selectedUser?.profileImage || assets.avataricon} alt="" />
                     </div>
-                    <div className='text-white text-[16px] md:text-[18px] font-semibold'>
+                    <div onClick={() => navigate(`/profile/${selectedUser.userName}`)} className='text-white text-[16px] md:text-[18px] font-semibold'>
                         <div className=''>{selectedUser?.userName}</div>
                         <div className='text-[12px] md:text-[14px] text-gray-400'>{selectedUser?.name}</div>
                     </div>
