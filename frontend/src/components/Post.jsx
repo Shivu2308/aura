@@ -329,7 +329,7 @@ const Post = ({ post }) => {
 
         {/* Post Media */}
         <div onDoubleClick={handleDoubleClick}
-        onTouchStart={handleTouchStart}
+        {/* onTouchStart={handleTouchStart} */}
          className='w-[90%] max-w-[500px] flex items-center relative justify-center'>
           {post?.mediaType === "image" && (
             <div className='w-full flex items-center justify-center rounded-2xl overflow-hidden'>
